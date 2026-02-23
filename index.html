@@ -15,7 +15,7 @@ async function checkClave() {
     const hash = await sha256(input);
 
     
-    const hashCorrecto = "9b74c9897bac770ffc029102a200c5de"; 
+    const hashCorrecto = "9efce752b32406072236ed36d80d658f28791df0e14ebd45e8c95da2de7b82c2"; 
 
     if (hash === hashCorrecto) {
         window.location.href = "/secret/";

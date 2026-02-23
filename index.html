@@ -1,10 +1,26 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>lolazo</title>
-</head>
-<body style="background:black; color:white; text-align:center; font-family:sans-serif;">
-    <h1>MENSAJE IMPORTANTE!!!</h1>
-    <p>el pipe se la traga jeje</p>
-</body>
-</html>
+<input type="password" id="clave" placeholder="Ingresa la clave">
+<button onclick="checkClave()">Entrar</button>
+
+<script>
+async function sha256(text) {
+    const encoder = new TextEncoder();
+    const data = encoder.encode(text);
+    const hashBuffer = await crypto.subtle.digest("SHA-256", data);
+    const hashArray = Array.from(new Uint8Array(hashBuffer));
+    return hashArray.map(b => b.toString(16).padStart(2, "0")).join("");
+}
+
+async function checkClave() {
+    const input = document.getElementById("clave").value;
+    const hash = await sha256(input);
+
+    
+    const hashCorrecto = "9b74c9897bac770ffc029102a200c5de"; 
+
+    if (hash === hashCorrecto) {
+        window.location.href = "/secret/";
+    } else {
+        alert("Clave incorrecta.");
+    }
+}
+</script>
